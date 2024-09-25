@@ -1,11 +1,11 @@
-import { NgClass, NgStyle } from '@angular/common';
+import { NgClass, NgStyle, UpperCasePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FaceSnap } from '../models/face-snap.model';
 
 @Component({
   selector: 'app-face-snap',
   standalone: true,
-  imports: [NgClass, NgStyle],
+  imports: [NgClass, NgStyle, UpperCasePipe],
   templateUrl: './face-snap.component.html',
   styleUrl: './face-snap.component.scss',
 })

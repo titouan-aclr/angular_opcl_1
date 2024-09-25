@@ -1,5 +1,5 @@
 <div class="face-snap-card" [ngClass]="{ snapped: buttonLabel === 'Oops unSnap!' }">
-  <h2>{{ faceSnap.title }}</h2>
+  <h2>{{ faceSnap.title | uppercase }}</h2>
   @if (faceSnap.location) {
     <p>Photo prise à {{ faceSnap.location }}</p>
   }
