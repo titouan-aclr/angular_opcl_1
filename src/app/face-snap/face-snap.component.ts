@@ -1,6 +1,7 @@
 import { DatePipe, NgClass, NgStyle, UpperCasePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FaceSnap } from '../models/face-snap.model';
+import { FaceSnapsService } from '../services/face-snaps.service';
 
 @Component({
   selector: 'app-face-snap',
@@ -14,16 +15,18 @@ export class FaceSnapComponent implements OnInit {
 
   buttonLabel!: string;
 
+  constructor(private faceSnapsService: FaceSnapsService) { }
+
   ngOnInit(): void {
     this.buttonLabel = 'Oh Snap!';
   }
 
   onSnap() {
     if (this.buttonLabel === 'Oops unSnap!') {
-      this.faceSnap.removeSnap();
+      this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'unsnap');
       this.buttonLabel = 'Oh Snap!';
     } else {
-      this.faceSnap.addSnap();
+      this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'snap');
       this.buttonLabel = 'Oops unSnap!';
     }
   }
