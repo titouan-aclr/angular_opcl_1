@@ -4,7 +4,7 @@
     <p>Photo prise à {{ faceSnap.location }}</p>
   }
   <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title" />
-  <p>Mis en ligne le {{ faceSnap.createdDate }}</p>
+  <p>Mis en ligne le {{ faceSnap.createdDate | date: 'd MMMM yyyy à HH:mm' }}</p>
   <p>{{ faceSnap.description }}</p>
   <p>
     <button (click)="onSnap()">{{ buttonLabel }}</button>
