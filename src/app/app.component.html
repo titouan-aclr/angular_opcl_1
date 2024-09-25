@@ -1,1 +1,3 @@
-<app-face-snap *ngFor="let faceSnap of faceSnaps" [faceSnap]="faceSnap"></app-face-snap>
+@for (faceSnap of faceSnaps; track $index) {
+    <app-face-snap [faceSnap]="faceSnap"/>
+}
