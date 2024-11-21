@@ -48,4 +48,8 @@ export class FaceSnapsService {
     const faceSnap = this.getFaceSnapById(faceSnapId);
     faceSnap.snap(snapType);
   }
+
+  addFaceSnap(newFaceSnap: FaceSnap) {
+    this.faceSnaps.push(newFaceSnap);  
+  }
 }
