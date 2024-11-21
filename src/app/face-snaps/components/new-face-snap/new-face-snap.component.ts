@@ -3,14 +3,12 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {map, Observable} from 'rxjs';
-import {FaceSnap} from '../models/face-snap.model';
-import {FaceSnapsService} from '../services/face-snaps.service';
+import {FaceSnap} from '../../../core/models/face-snap.model';
+import {FaceSnapsService} from '../../../core/services/face-snaps.service';
 import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-new-face-snap',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, UpperCasePipe, DatePipe],
   templateUrl: './new-face-snap.component.html',
   styleUrl: './new-face-snap.component.scss'
 })
