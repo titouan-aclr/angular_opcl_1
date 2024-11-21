@@ -4,11 +4,12 @@ import {provideClientHydration} from '@angular/platform-browser';
 import {routes} from './app.routes';
 import {CoreModule} from "./core/core.module";
 import {LandingPageModule} from "./landing-page/landing-page.module";
+import {AuthModule} from "./auth/auth.module";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideClientHydration(),
-    importProvidersFrom(CoreModule, LandingPageModule)
+    importProvidersFrom(CoreModule, LandingPageModule, AuthModule)
   ]
 };
