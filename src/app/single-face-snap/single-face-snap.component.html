@@ -10,7 +10,7 @@
   </p>
   <p>{{ faceSnap.description }}</p>
   <p>
-    <button (click)="onSnap()">{{ buttonLabel }}</button>
+    <button (click)="onSnap(faceSnap.id)">{{ buttonLabel }}</button>
     <span [ngStyle]="{ color: 'rgb(0, ' + faceSnap.snaps + ', 0)' }"
       >🤌 {{ faceSnap.snaps }}</span
     >

@@ -1,9 +1,10 @@
 import {AsyncPipe, DatePipe, NgClass, NgIf, NgStyle, UpperCasePipe} from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { FaceSnap } from '../models/face-snap.model';
-import { FaceSnapsService } from '../services/face-snaps.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, RouterLink} from '@angular/router';
+import {FaceSnap} from '../models/face-snap.model';
+import {FaceSnapsService} from '../services/face-snaps.service';
 import {Observable} from "rxjs";
+import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-single-face-snap',
@@ -19,26 +20,28 @@ export class SingleFaceSnapComponent implements OnInit {
   constructor(
     private faceSnapsService: FaceSnapsService,
     private route: ActivatedRoute
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.buttonLabel = 'Oh Snap!';
     this.getFaceSnap();
   }
 
-  onSnap() {
-    // if (this.buttonLabel === 'Oops unSnap!') {
-    //   this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'unsnap');
-    //   this.buttonLabel = 'Oh Snap!';
-    // } else {
-    //   this.faceSnapsService.snapFaceSnapById(this.faceSnap.id, 'snap');
-    //   this.buttonLabel = 'Oops unSnap!';
-    // }
+  onSnap(faceSnapId: number) {
+    if (this.buttonLabel === 'Oops unSnap!') {
+      this.faceSnap$ = this.faceSnapsService.snapFaceSnapById(faceSnapId, 'unsnap').pipe(
+        tap(() => this.buttonLabel = 'Oh Snap!')
+      );
+    } else {
+      this.faceSnap$ = this.faceSnapsService.snapFaceSnapById(faceSnapId, 'snap').pipe(
+        tap(() => this.buttonLabel = 'Oops unSnap!')
+      );
+    }
   }
 
   private getFaceSnap() {
-    const faceSnapId: string = this.route.snapshot.params['id'];
-    // this.faceSnap = this.faceSnapsService.getFaceSnapById(faceSnapId);
+    const faceSnapId: number = this.route.snapshot.params['id'];
     this.faceSnap$ = this.faceSnapsService.getFaceSnapById(faceSnapId);
   }
 }
